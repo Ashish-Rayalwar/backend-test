@@ -3,12 +3,12 @@ require("dotenv").config();
 const password = process.env.PASSWORD;
 const host = process.env.HOST;
 const root = process.env.ROOT;
-const dburl = process.env.DBURL;
+const dbName = process.env.DBNAME;
 const db = sql.createConnection({
   host: host,
   user: root,
   password: password,
-  database: dburl,
+  database: dbName,
 });
 // const db = sql.createConnection({
 //   host: host,
