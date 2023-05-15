@@ -4,7 +4,7 @@ const password = process.env.PASSWORD;
 const db = sql.createConnection({
   host: "localhost",
   user: "root",
-  password: password,
+  password: "password12345",
   database: "blog",
 });
 
