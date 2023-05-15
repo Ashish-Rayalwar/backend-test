@@ -5,18 +5,20 @@ const createPost = async (req, res) => {
   try {
     const data = req.body;
     const files = req.files;
+
     const { title, descr, date, cat } = data;
-    console.log(descr);
+    console.log(files);
     let userId = req.tokenDetails.userId;
 
-    if (files.length === 0)
-      return res.status(400).json({ message: "provide file and image" });
-
     let img;
+    if (files) {
+      if (files.length === 0)
+        return res.status(400).json({ message: "provide file and image" });
 
-    for (let i of files) {
-      if (i.fieldname == "img") {
-        img = await uploadFile(i);
+      for (let i of files) {
+        if (i.fieldname == "img") {
+          img = await uploadFile(i);
+        }
       }
     }
 
@@ -45,10 +47,12 @@ const editPost = async (req, res) => {
     let userId = req.tokenDetails.userId;
     let postId = req.params.id;
 
-    if (files.length > 0) {
-      for (let i of files) {
-        if (i.fieldname == "img") {
-          img = await uploadFile(i);
+    if (files) {
+      if (files.length > 0) {
+        for (let i of files) {
+          if (i.fieldname == "img") {
+            img = await uploadFile(i);
+          }
         }
       }
     }
